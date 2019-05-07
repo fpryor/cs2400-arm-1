@@ -7,24 +7,30 @@
 		;		In the caps "fill" memory provided.
 		
 		;		Your code here
-		        ADR		r2,       chars
-        		ADR		r6,	 caps
-        		MOV		r5, #11
-        		MOV		r7, #0
-        loop
-        		LDR		r3, [r2]
-        		SUBS		r4, r3, #97
-        		ADDPL	r3, r4, #65
-        		ADDPL	r7, r7, #1
-        		SUBS		r5, r5, #1
-        		BNE		loop
-        		STR		r7, [r6]
-        		END
+		                    ADR		r2, chars
+                			ADR		r6,	 caps
+                			MOV		r5, #11
+                			MOV		r7, #0
+                loop
+                			LDR		r3, [r2]
+                			CMP		r3, #95
+                			BGT		capitalize
+                			ADD		r2, r2, #4
+                			SUBS		r5, r5, #1
+                			BNE		loop
+                			END
+
+                capitalize
+                			SUB		r4, r3, #32
+                			STR		r4, [r2]
+                			ADD		r2, r2, #4
+                			ADD		r7, r7, #1
+                			STR		r7, [r6]
+                			SUBS		r5, r5, #1
+                			B		loop
 
         chars	DCD		'a', 'B', '5', 'q', '0', 'O', '1', 's', 'b', 'i', 'G'
         caps		FILL		4
 
 		
-chars	DCD		'a', 'B', '5', 'q', '0', 'O', '1', 's', 'b', 'i', 'G'
-count	DCD		11
-caps	FILL		4
+

@@ -9,28 +9,27 @@
 		
 		;		Your code here
 		        ADR		r0, numbers
-        		ADR		r7, result
-        		ADR		r8, carry
-        		MOV		r9, #0
-        		MOV		r6, #16
-        		MOV		r3, #1
-        		MOV		r5, #0
-        		LDR		r1, [r0]
-        		LDR		r2, [r0, #4]
-        loop
+                		ADR		r8, carry
+                		MOV		r9, #0
+                		MOV		r6, #16
+                		MOV		r3, #1
+                		MOV		r5, #0
+                		LDR		r1, [r0]
+                		LDR		r2, [r0, #4]
+                loop
 
-        		AND		r4, r1, r3
-        		SUBS		r4, r4, r3
-        		ADDSpl	r5, r5, r2
-        		LSL		r2, r2, #1
-        		LSR		r1, r1, #1
-        		SUBS		r6, r6, #1
-        		BNE		loop
-        		MOV		r7, r5
-        		MOVVS	r9, #1
-        		STR		r5, [r7]
-        		STR		r9, [r8]
-        		END
+                		AND		r4, r1, r3
+                		SUBS		r4, r4, r3
+                		ADDSpl	r5, r5, r2
+                		LSLS		r2, r2, #1
+                		LSR		r1, r1, #1
+                		SUBS		r6, r6, #1
+                		BNE		loop
+                		ADR		r10, result
+                		STR		r5, [r10]
+                		ADDpl	r9, r9, #1
+                		STR		r9, [r8]
+                		END
 
         numbers	DCD		0b1100101010010001, 0b1111010101000011
         result	FILL		4

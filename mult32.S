@@ -18,11 +18,11 @@
 loop
 		TST		r2, #1
 		BEQ		shift
-		ADDS		r4, r4, r1
+		ADDS	r4, r4, r1
 		ADC		r5, r5, r3
 shift
 		LSR		r2, r2, #1
-		LSLS		r1, r1, #1
+		LSLS	r1, r1, #1
 		ADC		r3, r3, #0
 		CMP		r2, #0
 		BGT		loop
